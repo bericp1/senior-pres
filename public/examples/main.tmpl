@@ -1,0 +1,5 @@
+<h1>{{exampleText}}</h1>
+<div class="well pets-container">
+  <span class="loading" ng-show="pets.length<1">Loading...</span>
+  <div ng-repeat="pet in pets" example-directive pet="pet" is-alive="isAlive"></div>
+</div>
