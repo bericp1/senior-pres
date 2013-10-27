@@ -33,8 +33,15 @@ Yet to be implemented :-(
 
 ### TODO
 
- * ~Implement LESS~
+ * TESTING!!!!!!11!11!!1!
+ * Better explain what happens in the dev/build/deploy cycle (for now, check[me](./Gruntfile.js "the Gruntfile$
+ * ~~Implement LESS~~
  * Implement require.js for angular modules for easier module loading
  * Better solution for angular templates, if possible
- * Implement usemin, concat, and uglify
+ * ~~Implement usemin, concat, and uglify~~
  * Implement cache busting of all assets referenced in all files (templates, css files, etc.)
+ * Improve heroku-specific setup process to account for errors, pipe std* instead of buffering to a string, an$
+ * Eventually turn this into a yeoman buildpack thing or a standalone tool all together
+ * Improve rename setup process so that it doesn't rely on simple find/replace and and actually knows where to$
+ * Make these TODO items actual bugs on github -_-
+ * Lots more...
