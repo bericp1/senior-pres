@@ -1,6 +1,3 @@
-/**
- * Created by brandon on 10/26/13.
- */
 /*exported console*/
 (function(window){
   'use strict';

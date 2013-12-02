@@ -1,4 +1,4 @@
-## Not a Sock Drawer v0.1.0
+## Not a Sock Drawer v0.1.1
 #### A less-than-typical but logically structured angular+expressjs web app skeleton
 
 Inspired by [this pretty cool article](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
@@ -17,15 +17,31 @@ In an existing git project (right after `git init`):
 ### Structure
 
  * `/lib/`:     first-party node modules
+ * `/models/`:  mongoose models; see [README](models/ "models/")
  * `/public/`:  front end; see [README](public/ "public/")
  * `/routes/`:  express routes; see [README](routes/ "routes/")
  * `/tasks/`:   grunt tasks
 
 ### Deploying to Heroku
 
-`skeleton` now uses [heroku-buildpack-nodejs-grunt](https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt) so
+This app seed now uses [heroku-buildpack-nodejs-grunt](https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt) so
 the entire dev version of the app is pushed to heroku and this custom build pack will run the appropriate build tasks.
-This eliminates the need to commit production changes and then roll them back after deployment.
+This eliminates the need to commit production changes and then roll them back after deployment; however, *All deps
+necessary to building must be registered in `package.json` under `dependencies` not `devDependencies`*!
+
+### Environment Variables
+
+If the file `.env` exists in the project's root directory, it will be parsed and added to node's `process.env`. The
+file should be formatted where each line looks like `VAR_NAME=VAR_VALUE`.
+
+### Change Bootswatch Theme
+
+In the project directory:
+
+    $ grunt shell:theme        # Lists available themes
+    $ grunt shell:theme:list   # ^^
+    $ grunt shell:theme:cosmo  # Changes theme to cosmo
+
 
 ### Testing
 
@@ -34,14 +50,31 @@ Yet to be implemented :-(
 ### TODO
 
  * TESTING!!!!!!11!11!!1!
- * Better explain what happens in the dev/build/deploy cycle (for now, check[me](./Gruntfile.js "the Gruntfile") out)
+ * Better explain what happens in the dev/build/deploy cycle (for now, check [me](./Gruntfile.js "the Gruntfile") out)
  * ~~Implement LESS~~
  * Implement require.js for angular modules for easier module loading
  * Better solution for angular templates, if possible
  * ~~Implement usemin, concat, and uglify~~
- * Implement cache busting of all assets referenced in all files (templates, css files, etc.)
+ * ~~Implement cache busting of all assets referenced in all files (templates, css files, etc.)~~
  * Improve heroku-specific setup process to account for errors, pipe std* instead of buffering to a string, and more
  * Eventually turn this into a yeoman buildpack thing or a standalone tool altogether
  * Improve rename setup process so that it doesn't rely on simple find/replace and and actually knows where to change the app name
  * Make these TODO items actual bugs on github -_-
+ * Pure modularity wherein each part of the application has it's own bundled Mongoose models, Angular parts, libs, express
+   routes, etc. Currently, application parts have only dedicated front-end modules (angular parts).
  * Lots more...
+
+### Change log
+
+ - *v0.1.1*
+  - Started change log (:
+  - Added mongoose support
+  - Added a lot of helper functions/utilities to make working with mongoose even easier
+  - Added auto-registering of mongoose models
+  - Added optional auto-loading of a CRUD-like interface for mongoose models' documents
+  - Added ability to quickly change bootswatch theme with grunt command
+  - Env variables are automatically loaded from .env before the server starts in dev mode
+  - Files in `lib/`, `models/`, and `routes/` are now watched for changes during `grunt dev`
+  - Renamed `common` to `assets`
+  - Preparing to implement browserify
+  - Next mini-update will patch up the example to use mongoose for demonstration purposes

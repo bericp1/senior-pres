@@ -13,6 +13,30 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     //General tasks
+
+    shell:{
+      theme:{
+        command:function(toWhich){
+          var bootswatchDir = 'public/vendor/bootswatch/';
+          var activeDir = 'active-theme';
+          var cmd = '';
+          if(typeof toWhich === 'string' && toWhich !== 'list'){
+            cmd = 'rm -rf "' + bootswatchDir + activeDir + '"; ' +
+              'ln -s "' + toWhich + '" "' + bootswatchDir + activeDir + '"';
+          }else{
+            cmd = 'ls "' + bootswatchDir + '"';
+          }
+          console.log('Running: ', cmd.blue);
+          return cmd;
+        },
+        options:{
+          stdout: true,
+          stderr: true,
+          failOnError: true
+        }
+      }
+    },
+
     watch: {
       options: {
         livereload: true
@@ -41,7 +65,7 @@ module.exports = function (grunt) {
         files: 'public/**/*.{woff,otf,ttf,eot}'
       },
       server:{
-        files: ['app.js', 'routes/**/*.js'],
+        files: ['app.js', 'routes/**/*.js', 'lib/**/*.js', 'models/**/*.js'],
         tasks: ['express:dev'],
         options: {
           nospawn: true
@@ -51,18 +75,13 @@ module.exports = function (grunt) {
 
     express: {
       options: {
-        script: 'app.js'
+        script: 'app.js',
+        output: '^Listening'
       },
       dev: {
         options: {
           port: 8000,
           'node_env': 'development'
-        }
-      },
-      prod: {
-        options: {
-          port: 5000,
-          'node_env': 'production'
         }
       }
     },
@@ -72,17 +91,17 @@ module.exports = function (grunt) {
       tmp: '.tmp',
       prod: [
         '**/README.md',
-        'Gruntfile.js',
         'tasks',
         '*.log',
         'public/*',
         'dest',
+        'tmp',
         '!public/favicon.ico',
         '!public/index.html',
         '!public/scripts*.js',
         '!public/styles*.css',
         '!public/vendor',
-        '!public/common',
+        '!public/assets',
         '!node_modules/**/*'
       ]
     },
@@ -105,7 +124,6 @@ module.exports = function (grunt) {
         nonew: true,
         quotmark: 'single',
         regexp: true,
-        strict: true,
         trailing: true,
         undef: true,
         unused: true
@@ -120,6 +138,7 @@ module.exports = function (grunt) {
           browser: true,
           node: false,
           esnext: false,
+          strict: true,
           globals: {
             angular: false,
             '$': false,
@@ -140,11 +159,11 @@ module.exports = function (grunt) {
       },
       prod: {
         src: 'public/**/*.tmpl',
-        dest: 'public/common/js/templates.js'
+        dest: 'public/assets/js/templates.js'
       },
       dev: {
         src: 'public/**/*.tmpl',
-        dest: '.tmp/common/js/templates.js'
+        dest: '.tmp/assets/js/templates.js'
       }
     },
     less:{
@@ -194,6 +213,7 @@ module.exports = function (grunt) {
     'clean:tmp',
     'ngtemplates:dev',
     'less:dev',
+    'loadenv',
     'express:dev',
     'watch'
   ]);

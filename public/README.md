@@ -8,14 +8,14 @@ out of all the individual components. See the `examples` subdirectory.
 
 The are two special subdirectories in this directory:
 
- 1. `common`:
+ 1. `assets`:
   * first-party assets used throughout the client side
  2. `vendor`:
   * third-party assets used throughout the client side
 
 ####Conventions
 
- * Models
+ * Models (angular ones not mongoose ones)
   * Naming: `ExampleModel`
   * Construct: `angular.service`
  * Controllers

@@ -10,7 +10,7 @@ module.exports = function(req, res){
       new Pet('Jinx', 100),
       new Pet('Matt', 2),
       new Pet('Luther', 20),
-      new Pet('Rata', 10001),
+      new Pet('Raj', 10001),
       new Pet('Pala', 102),
       new Pet('Yipi', 7),
       new Pet('KoaKoa', 9),
