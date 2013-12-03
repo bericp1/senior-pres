@@ -48,15 +48,24 @@ module.exports = function (grunt) {
       index: {
         files: 'public/index.html'
       },
-      js: {
-        files: 'public/**/*.js'
+      'js_app': {
+        files: ['public/**/*.js', '!public/vendor/**/*.js'],
+        tasks: ['browserify:dev_app']
+      },
+      'js_vendor': {
+        files: 'public/vendor/**/*.js',
+        tasks: ['browserify:dev_vendor']
       },
       css: {
         files: '{public,.tmp}/**/*.css'
       },
-      less: {
-        files: 'public/**/*.less',
-        tasks: ['less:dev']
+      'less_app': {
+        files: ['public/**/*.less', '!public/vendor/**/*.less'],
+        tasks: ['less:dev_app']
+      },
+      'less_vendor': {
+        files: 'public/vendor/**/*.{less,css}',
+        tasks: ['less:dev_vendor']
       },
       images: {
         files: 'public/**/*.{png,jpg,jpeg,gif,webp,svg}'
@@ -92,14 +101,14 @@ module.exports = function (grunt) {
       prod: [
         '**/README.md',
         'tasks',
-        '*.log',
+        '**.log',
         'public/*',
         'dest',
-        'tmp',
+        '.tmp',
         '!public/favicon.ico',
         '!public/index.html',
-        '!public/scripts*.js',
-        '!public/styles*.css',
+        '!public/app*.js',
+        '!public/app*.css',
         '!public/vendor',
         '!public/assets',
         '!node_modules/**/*'
@@ -136,7 +145,7 @@ module.exports = function (grunt) {
         src: ['public/**/*.js', '!public/vendor/**/*.js'],
         options: {
           browser: true,
-          node: false,
+          node: true,
           esnext: false,
           strict: true,
           globals: {
@@ -157,54 +166,86 @@ module.exports = function (grunt) {
         },
         base: 'public'
       },
-      prod: {
-        src: 'public/**/*.tmpl',
-        dest: 'public/assets/js/templates.js'
-      },
       dev: {
         src: 'public/**/*.tmpl',
-        dest: '.tmp/assets/js/templates.js'
+        dest: '.tmp/templates.js'
+      },
+      prod: {
+        src: 'public/**/*.tmpl',
+        dest: 'public/templates.js'
       }
     },
     less:{
-      dev:{
-        files: [
-          {
-            expand: true,
-            cwd: 'public/',
-            src: ['**/*.less', '!vendor/**/*'],
-            dest: '.tmp/',
-            ext: '.css'
-          }
-        ]
+      'dev_vendor': {
+        files: {
+          '.tmp/vendor.css': 'public/vendor.less'
+        }
       },
-      prod:{
-        files: [
-          {
-            expand: true,
-            cwd: 'public/',
-            src: ['**/*.less', '!vendor/**/*'],
-            dest: 'public/',
-            ext: '.css'
+      'dev_app': {
+        files: {
+          '.tmp/app.css': 'public/app.less'
+        }
+      },
+      'prod_vendor': {
+        files: {
+          'public/vendor.css': 'public/vendor.less'
+        }
+      },
+      'prod_app': {
+        files: {
+          'public/app.css': 'public/app.less'
+        }
+      }
+    },
+    browserify: {
+      'dev_vendor': {
+        src:  'public/vendor.js',
+        dest: '.tmp/vendor.js',
+        options: {
+          shim:{
+            jquery:{
+              path: 'public/vendor/jquery/jquery.js',
+              exports: 'jQuery'
+            }
           }
-        ]
+        }
+      },
+      'dev_app': {
+        src:  'public/app.js',
+        dest: '.tmp/app.js'
+      },
+      'prod_vendor': {
+        src:  'public/vendor.js',
+        dest: 'public/vendor.js',
+        options: {
+          shim:{
+            jquery:{
+              path: 'public/vendor/jquery/jquery.js',
+              exports: 'jQuery'
+            }
+          }
+        }
+      },
+      'prod_app': {
+        src:  'public/app.js',
+        dest: 'public/app.js'
       }
     },
     useminPrepare: {
-      html: 'public/index.html',
+      prod: 'public/index.html',
       options: {
         dest: 'public'
       }
     },
     usemin:{
-      html: 'public/index.html',
+      prod: 'public/index.html',
       options:{
         base: 'public'
       }
     },
     filerev: {
       prod:{
-        src: ['public/scripts.js','public/styles.css']
+        src: ['public/app.js','public/app.css']
       }
     }
   });
@@ -212,17 +253,23 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', [
     'clean:tmp',
     'ngtemplates:dev',
-    'less:dev',
+    'less:dev_vendor',
+    'less:dev_app',
+    'browserify:dev_vendor',
+    'browserify:dev_app',
     'loadenv',
     'express:dev',
     'watch'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('prod', [
     'clean:tmp',
     'jshint',
     'ngtemplates:prod',
-    'less:prod',
+    'less:prod_vendor',
+    'less:prod_app',
+    'browserify:prod_vendor',
+    'browserify:prod_app',
     'useminPrepare',
     'concat',
     'uglify',
@@ -232,7 +279,8 @@ module.exports = function (grunt) {
     'clean:prod'
   ]);
 
-  grunt.registerTask('heroku:production', ['build']);
+  grunt.registerTask('heroku:production', ['prod']);
+  grunt.registerTask('build', ['prod']);
 
   grunt.registerTask('default', ['dev']);
 };

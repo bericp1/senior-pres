@@ -1,4 +1,6 @@
-/*exported console*/
+/**
+ * console.log polyfill
+ */
 (function(window){
   'use strict';
   if(typeof window.console !== 'object'){
