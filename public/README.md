@@ -29,22 +29,3 @@ Special files/folders
  - `index.html`:
   * Base index for app. Here, all 4 of the previously mentioned files are pulled in so there isn't much that will ever
     need to be edited in this file.
-
-####Conventions
-
- * Models (angular ones not mongoose ones)
-  * Naming: `ExampleModel`
-  * Construct: `angular.service`
- * Controllers
-  * Naming: `ExampleController`
-  * Construct: `angular.controller`
- * Services
-  * Naming: `exampleService`
-  * Construct: `angular.factory`
- * Directives
-  * Naming: `exampleDirective`
-  * Construct: `angular.directive`
- * Templates
-  * Naming: `example.tmpl`
-  * Accompanying styles are to be `<link>`ed in index.html so that they are bundled for production correctly (as
-  opposed to placing the `<link>` in the `*.tmpl` template).
