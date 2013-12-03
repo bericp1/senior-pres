@@ -238,13 +238,13 @@ module.exports = function (grunt) {
       }
     },
     usemin:{
-      prod: 'public/index.html',
+      html: 'public/index.html',
       options:{
         base: 'public'
       }
     },
     filerev: {
-      prod:{
+      html:{
         src: ['public/app.js','public/app.css']
       }
     }

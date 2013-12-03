@@ -4,8 +4,8 @@ module.exports = function(){
     restrict: 'AEC',
     replace: true,
     templateUrl: 'example/exampleDirective.tmpl',
-    link: function($scope, $elem, attrs){
-      $elem.find('button').on('click',function(ev){
+    link: function($scope, $elem){
+      $elem.find('button').on('click',function(){
         $scope.setAlive($scope.pet);
         $scope.$apply();
       });
