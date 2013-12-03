@@ -232,7 +232,7 @@ module.exports = function (grunt) {
       }
     },
     useminPrepare: {
-      prod: 'public/index.html',
+      html: 'public/index.html',
       options: {
         dest: 'public'
       }
@@ -244,7 +244,7 @@ module.exports = function (grunt) {
       }
     },
     filerev: {
-      html:{
+      prod:{
         src: ['public/app.js','public/app.css']
       }
     }
