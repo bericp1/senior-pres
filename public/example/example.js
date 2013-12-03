@@ -1,15 +1,11 @@
-/**
- * Created by brandon on 10/26/13.
- */
 (function(angular){
   'use strict';
-  angular.module('exampleModule', ['ngRoute'])
-    .controller('ExampleController',  require('./ExampleController'))
-    .service('ExampleModel',          require('./ExampleModel'))
-    .directive('exampleDirective',    require('./exampleDirective'))
-    .factory('exampleService',        require('./exampleService'));
+  var expressResource = require('../assets/js/expressResource');
 
-  angular.module('exampleModule')
+  angular.module('exampleModule', ['ngRoute', 'ngResource'])
+    .factory(   'PetResource',        expressResource('/data/pet'))
+    .controller('ExampleController',  require('./controller'))
+    .directive( 'petBox',             require('./pet/box'))
     .config(['$routeProvider', function ($routeProvider) {
       $routeProvider
         .when('/', {

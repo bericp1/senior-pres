@@ -1,4 +1,4 @@
-## Not a Sock Drawer v0.1.1
+## Not a Sock Drawer v0.1.2
 #### A less-than-typical but logically structured angular+expressjs web app skeleton
 
 Inspired by [this pretty cool article](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
@@ -52,8 +52,7 @@ Yet to be implemented :-(
  * TESTING!!!!!!11!11!!1!
  * Better explain what happens in the dev/build/deploy cycle (for now, check [me](./Gruntfile.js "the Gruntfile") out)
  * ~~Implement LESS~~
- * Implement require.js for angular modules for easier module loading
- * Better solution for angular templates, if possible
+ * ~~Implement require.js for angular modules for easier module loading~~ **(Used browserify)**
  * ~~Implement usemin, concat, and uglify~~
  * ~~Implement cache busting of all assets referenced in all files (templates, css files, etc.)~~
  * Improve heroku-specific setup process to account for errors, pipe std* instead of buffering to a string, and more
@@ -66,7 +65,7 @@ Yet to be implemented :-(
 
 ### Change log
 
- - *v0.1.1*
+ - **v0.1.1**
   - Started change log (:
   - Added mongoose support
   - Added a lot of helper functions/utilities to make working with mongoose even easier
@@ -78,3 +77,16 @@ Yet to be implemented :-(
   - Renamed `common` to `assets`
   - Preparing to implement browserify
   - Next mini-update will patch up the example to use mongoose for demonstration purposes
+ - **v0.1.2**
+  - Made `lib/auto-db` less stingy about trailing slashes in paths
+  - Updated example to use mongoose (though now there aren't any examples of custom routes)
+  - Clarified some of the model README
+  - All client side modularity is now handled by browserify. See [README](public/)
+  - All stylesheet loading is now done directly through LESS `@import`s
+  - `less-prefixer` fixed and in-use
+  - New bootswatch theme (*yeti*)
+  - Removed all minified third party sources (minifcation is done by build process here
+  - Socket.io is fully in working condition and adjusted to Heroku.
+   - This includes the angular module `angular-socket-io` which has been configured to forward all socket events to the
+     root scope with a prefix `'socket.'` for all events
+  - `index.html` cleaned up

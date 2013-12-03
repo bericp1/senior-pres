@@ -16,6 +16,9 @@ The model's name as it should be registered in Mongoose with
 An object that will be registered with Mongoose as the model's schema. See
 [mongoose's docs](http://mongoosejs.com/docs/models.html).
 
+**Also note that any document properties that start with an `_` are considered non-required by all server side logic**,
+meaning documents can be created without defining this specific property.
+
 ##`exports.autoLoad` (optional)
 ###Type: `object`|`boolean`
 
@@ -34,7 +37,7 @@ If `autoLoad === true`, it's synonymous to:
 
     {
       'getAll': {
-        path: '/',
+        path: '',
         method: 'get',
         admin: false
       },
@@ -44,7 +47,7 @@ If `autoLoad === true`, it's synonymous to:
         admin: false
       },
       'update': {
-        path: '/',
+        path: '',
         method: 'post',
         admin: true
       },

@@ -1,6 +1,6 @@
 var Schema = require('mongoose').Schema;
 module.exports = {
-  name: 'Example',
+  name: 'Pet',
   schema: {
     name:   {
       type: String,
@@ -8,11 +8,17 @@ module.exports = {
         return name.trim().toLowerCase() !== '';
       }, 'Name can\'t be empty.']
     },
-    army: [{
+    age: Number,
+    '_army': [{
       type: Schema.Types.ObjectId,
-      ref: 'Example',
+      ref: 'Pet',
       'default': []
     }]
   },
-  autoLoad: true
+  autoLoad: {
+    'getAll': false,
+    'getOne': false,
+    'update': false,
+    'delete': false
+  }
 };
