@@ -62,7 +62,8 @@ module.exports = function (grunt) {
                 exec(
                   'heroku create ' + appName + ' --buildpack ' + buildpackURL +
                     ' && heroku labs:enable user-env-compile -a ' + appName +
-                    ' && heroku config:set NODE_ENV=production',
+                    ' && heroku config:set NODE_ENV=production' +
+                    ' && heroku addons:add mongolab',
                   {
                     cwd: path.join(__dirname, '..')
                   },
