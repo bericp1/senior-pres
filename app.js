@@ -21,7 +21,7 @@ var io = socketIO.listen(server);
 app.set('port',       process.env.PORT || 8000);
 app.set('env',        process.env.NODE_ENV || 'development');
 app.set('moreToLog',  '');
-app.set('mongoURI',   process.env.MONGOLAB_URI || 'mongodb://localhost:27017/not-a-sock-drawer');
+app.set('mongoURI',   process.env.MONGOLAB_URI || 'mongodb://localhost:27017/senior-pres');
 app.set('routesDir',  path.join(__dirname, 'routes'));
 app.set('modelsDir',  path.join(__dirname, 'models'));
 app.set('tmpDir',     '.tmp');
