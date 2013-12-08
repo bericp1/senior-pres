@@ -1,10 +1,10 @@
 require('./assets/js/util');
-require('./example/example');
+require('./example');
 
 (function(angular){
   'use strict';
   angular
-    .module('not-a-sock-drawer', ['compiled-templates', 'exampleModule', 'btford.socket-io'])
+    .module('not-a-sock-drawer', ['compiled-templates', 'btford.socket-io', 'exampleModule'])
     .config(['socketProvider', function(socketProvider){
       socketProvider.prefix('socket.');
     }]);
