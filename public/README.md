@@ -3,7 +3,7 @@
 ####The `public` directory hosts the client-side angular app.
 
 Every subdirectory is it's own related sets of models, services, directives, controllers, etc. and must include
-a manifest-like file that will most likely have the same name as the subdirectory which creates an angular module
+a manifest-like file (most likely `index.js` for easier `require()`ing) which creates an angular module
 out of all the individual components. See the [`examples/`](examples/) subdirectory.
 
 Browserify us used throughout the client side. See the [`examples/`](examples/) subdirectory for usage.
@@ -28,4 +28,4 @@ Special files/folders
     a css stylesheet so that it's concatenated when build and not just left as an @import statement.
  - `index.html`:
   * Base index for app. Here, all 4 of the previously mentioned files are pulled in so there isn't much that will ever
-    need to be edited in this file.
+    need to be edited in this file except `<meta>` tags, `<title>`, etc.

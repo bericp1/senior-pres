@@ -1,4 +1,4 @@
-## Not a Sock Drawer v0.1.2
+## Not a Sock Drawer v0.2.1
 #### A less-than-typical but logically structured angular+expressjs web app skeleton
 
 Inspired by [this pretty cool article](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
@@ -65,7 +65,7 @@ Yet to be implemented :-(
 
 ### Change log
 
- - **v0.1.1**
+ - **v0.1.0**
   - Started change log (:
   - Added mongoose support
   - Added a lot of helper functions/utilities to make working with mongoose even easier
@@ -77,7 +77,7 @@ Yet to be implemented :-(
   - Renamed `common` to `assets`
   - Preparing to implement browserify
   - Next mini-update will patch up the example to use mongoose for demonstration purposes
- - **v0.1.2**
+ - **v0.2.0**
   - Made `lib/auto-db` less stingy about trailing slashes in paths
   - Updated example to use mongoose (though now there aren't any examples of custom routes)
   - Clarified some of the model README
@@ -90,3 +90,7 @@ Yet to be implemented :-(
    - This includes the angular module `angular-socket-io` which has been configured to forward all socket events to the
      root scope with a prefix `'socket.'` for all events
   - `index.html` cleaned up
+ - **v0.2.1**
+  - README fixes
+  - Organizational Fixes
+  - Fixes to example/main.tmpl layout
