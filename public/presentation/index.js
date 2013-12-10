@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('presentation', ['ngRoute', 'ngCookies'])
-    .directive('jmpressPres', require('./jmpressPres'))
+    .directive('jmpressPress', require('./jmpressPres'))
     .directive('matrix', require('./matrix'))
     .controller('PresController', require('./controller'))
     .controller('AdminController', require('./admin'))

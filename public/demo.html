@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pop Culture Demo</title>
+  <style>
+    body{
+      background: #e3e3e3;
+    }
+    iframe{
+      height: 600px;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      float: left;
+      border: none;
+    }
+    iframe.demo-frame{
+      width: 450px;
+      margin-right: 20px;
+    }
+    iframe.demo-mobile-frame{
+      width: 330px;
+    }
+    div{
+      margin: 0 auto;
+      margin-top: 50px;
+      width: 800px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <iframe data-jmpress="drive-up after 200ms prev" src="http://pop-culture.herokuapp.com/presentation/#/slogans-info" class="demo-frame"></iframe>
+  <iframe data-jmpress="drive-up after 200ms prev" src="http://pop-culture.herokuapp.com" class="demo-mobile-frame"></iframe><br><br>
+  <button onclick="location.href='/pres#/webdevhow'">Back</button>
+</div>
+</body>
+</html>

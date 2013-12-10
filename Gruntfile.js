@@ -107,6 +107,8 @@ module.exports = function (grunt) {
         '.tmp',
         '!public/favicon.ico',
         '!public/index.html',
+        '!public/demo.html',
+        '!public/presentation-screen.html',
         '!public/app*.js',
         '!public/app*.css',
         '!public/vendor',

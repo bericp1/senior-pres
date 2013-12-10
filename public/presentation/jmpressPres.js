@@ -3,7 +3,7 @@ module.exports = [function(){
   return {
     restrict: 'A',
     scope: {
-      opts: '=jmpressPres'
+      opts: '=jmpressPress'
     },
     link: function(scope, element){
       element.jmpress(scope.opts);
