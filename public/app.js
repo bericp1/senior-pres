@@ -1,11 +1,12 @@
 require('./assets/js/util');
-require('./example');
+require('./presentation');
 
 (function(angular){
   'use strict';
   angular
-    .module('not-a-sock-drawer', ['compiled-templates', 'btford.socket-io'])
-    .config(['socketProvider', function(socketProvider){
+    .module('senior-pres', ['compiled-templates', 'btford.socket-io', 'presentation'])
+    .config(['socketProvider', '$locationProvider', function(socketProvider, $locationProvider){
       socketProvider.prefix('socket.');
+      $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 })(angular);

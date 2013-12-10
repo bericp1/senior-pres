@@ -79,6 +79,15 @@ conn.once('open', function(){
 
   app.use(express.static(path.join(__dirname, app.get('publicDir'))));
   app.use('/data', autoDB(autoLoadModels));
+
+  app.use(function(req, res, next){
+    if(/^\/[A-Za-z0-9\-\_\/\#]+$/gi.test(req.path)){
+      res.sendfile('index.html', {root: './public'});
+    }else{
+      next();
+    }
+  });
+
   app.use(express.errorHandler());
 
   io.set('log level', app.get('io log level'));

@@ -27,7 +27,8 @@
     "mongoose-validate": "0.0.5",
     "socket.io": "~0.9.16",
     "browserify": "~2.36.0",
-    "grunt-browserify": "~1.2.11"
+    "grunt-browserify": "~1.2.11",
+    "send": "~0.1.4"
   },
   "engines": {
     "node": ">=0.8.0"

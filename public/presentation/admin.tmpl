@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="span4 offset4 panel panel-primary">
+      <div class="panel-heading">
+        Matrix Properties
+      </div>
+      <div class="panel-body">
+        <div class="form-group" ng-repeat="(opt, val) in opts">
+          <div class="control-label">{{opt}}</div>
+          <input class="form-control" ng-model="$parent.opts[opt]">
+        </div>
+        <div class="form-group">
+          <a class="btn btn-primary btn-block" ng-click="back()">&lt;-- Back</a>
+          <a class="btn btn-warning btn-block" ng-click="reset()">Reset defaults</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

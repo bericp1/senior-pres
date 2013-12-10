@@ -1,0 +1,111 @@
+.container{
+  margin-top: 50px;
+}
+
+section{
+  width: 800px;
+  padding: 0;
+  opacity: .1;
+  transition: opacity 1s linear, -webkit-transform 1s ease;
+  &.active{
+    opacity: 1;
+  }
+  h1,h2,h3,h4,h5,h6{
+    text-align: center;
+  }
+  h1{
+    margin-bottom: 26px;
+    font-size: 80px;
+    &.big{
+      font-size: 100px;
+    }
+    &.huge{
+      font-size: 144px;
+    }
+  }
+  h2{
+    margin-bottom: 24px;
+    font-size: 60px;
+    &.big{
+      font-size: 80px;
+    }
+    &.huge{
+      font-size: 100px;
+    }
+  }
+  h3{
+    margin-bottom: 22px;
+    font-size: 55px;
+    &.big{
+      font-size: 70px;
+    }
+    &.huge{
+      font-size: 80px;
+    }
+  }
+  h4{
+    margin-bottom: 19px;
+    font-size: 40px;
+    &.big{
+      font-size: 50px;
+    }
+    &.huge{
+      font-size: 60px;
+    }
+  }
+  h5{
+    margin-bottom: 16px;
+    font-size: 30px;
+    &.big{
+      font-size: 40px;
+    }
+    &.huge{
+      font-size: 50px;
+    }
+  }
+  h6{
+    margin-bottom: 14px;
+    font-size: 25px;
+    &.big{
+      font-size: 30px;
+    }
+    &.huge{
+      font-size: 40px;
+    }
+  }
+  .slide-col{
+    width: 400px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    &:before{
+      content: ' ';
+      clear: both;
+    }
+    &:after{
+      content: ' ';
+      clear: both;
+    }
+  }
+}
+canvas[matrix]{
+  height: 100%;
+  width: 100%;
+}
+
+#title{
+  h1{
+    font-size: 100px;
+  }
+  h2{
+    font-size: 45px;
+  }
+}
+
+#theme{
+  h1{
+    font-size: 144px;
+  }
+}
