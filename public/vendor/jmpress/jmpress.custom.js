@@ -1369,7 +1369,7 @@
 		// so both "fallback" `#slide-id` and "enhanced" `#/slide-id` will work
 		// TODO SECURITY check user input to be valid!
 		try {
-			var el = $( '#' + window.location.hash.replace(/^#\/?/,"") );
+			var el = $( '#' + window.location.hash.replace(/^#(\/|\%2F)?/i,"") );
 			return el.length > 0 && el.is(settings.stepSelector) ? el : undefined;
 		} catch(e) {}
 	}
